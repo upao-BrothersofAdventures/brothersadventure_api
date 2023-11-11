@@ -20,6 +20,7 @@ public class Itinerary {
     private String nombre;
     private String destino;
     private String fecha_inicio;
+    private String tag;
 
     private String fecha_fin;
 

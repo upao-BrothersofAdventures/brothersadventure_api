@@ -1,16 +1,12 @@
-package com.example.brothersofadventure.itinerary.domain.delivery;
-import com.example.model.Activity;
-import com.example.model.Itinerary;
-import com.example.model.User;
-import com.example.service.ItineraryService;
-import com.example.dto.ActivityDto;
-import com.example.dto.ItineraryDto;
-import com.example.dto.UserDto;
-import jakarta.validation.Valid;
+package com.example.brothersofadventure.itinerary.domain.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.example.brothersofadventure.itinerary.domain.dto.ActivityDto;
+import com.example.brothersofadventure.itinerary.domain.dto.ItineraryDto;
+import com.example.brothersofadventure.itinerary.domain.service.ItineraryService;
 
 import java.util.List;
 
@@ -22,7 +18,7 @@ public class ItineraryController {
     private final ItineraryService itineraryService;
 
     @PostMapping
-    public ResponseEntity<ItineraryDto> createItinerary(@Valid @RequestBody ItineraryDto itineraryDto) {
+    public ResponseEntity<ItineraryDto> createItinerary( @RequestBody ItineraryDto itineraryDto) {
         ItineraryDto createdItinerary = itineraryService.createItinerary(itineraryDto);
         return new ResponseEntity<>(createdItinerary, HttpStatus.CREATED);
     }
@@ -42,7 +38,7 @@ public class ItineraryController {
     @PutMapping("/{itineraryId}")
     public ResponseEntity<ItineraryDto> updateItinerary(
             @PathVariable Long itineraryId,
-            @Valid @RequestBody ItineraryDto itineraryDto) {
+             @RequestBody ItineraryDto itineraryDto) {
         ItineraryDto updatedItinerary = itineraryService.updateItinerary(itineraryId, itineraryDto);
         return new ResponseEntity<>(updatedItinerary, HttpStatus.OK);
     }
@@ -62,15 +58,10 @@ public class ItineraryController {
     @PostMapping("/{itineraryId}/activities")
     public ResponseEntity<ActivityDto> createActivityForItinerary(
             @PathVariable Long itineraryId,
-            @Valid @RequestBody ActivityDto activityDto) {
+             @RequestBody ActivityDto activityDto) {
         ActivityDto createdActivity = itineraryService.createActivityForItinerary(itineraryId, activityDto);
         return new ResponseEntity<>(createdActivity, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{itineraryId}/users")
-    public ResponseEntity<List<UserDto>> getUsersByItinerary(@PathVariable Long itineraryId) {
-        List<UserDto> users = itineraryService.getUsersByItinerary(itineraryId);
-        return new ResponseEntity<>(users, HttpStatus.OK);
-    }
+ 
 }
-

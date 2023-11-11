@@ -1,5 +1,4 @@
 package com.example.brothersofadventure.itinerary.domain.entity;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,19 +11,13 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Grupo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String correoElectronico;
-    private String password;
-    private String Nombres;
-    private String Apellidos;
-    private String email;
-
-    public String getEmail() {
-        return email;
-    }
-
-    
+    private String Contenido;
+    private String Remitente;
+    private String Fecha_envio;
+    private String Destinatario;
+    private String Estado;
 }
